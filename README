@@ -1,0 +1,23 @@
+# Assignment #4 — Facade Design Pattern (Home Theater Subsystem)
+
+## Project Overview
+This project demonstrates the implementation of the **Facade Structural Design Pattern** in Java.
+The system models a **Home Theater** environment where multiple complex subsystem components (Amplifier, DVD Player, Projector, Screen, Lights, Popcorn Popper) are coordinated behind a simple, high-level interface (`HomeTheaterFacade`).
+
+## Architecture & Subsystems
+The project is divided into clean packages:
+- `subsystem`: Contains 6 independent components with distinct responsibilities (`Amplifier`, `DvdPlayer`, `Projector`, `Screen`, `TheaterLights`, `PopcornPopper`).
+- `facade`: Contains `HomeTheaterFacade`, which encapsulates the complexity of configuring and orchestrating all subsystem components.
+- `Main`: The client entry point that interacts solely with the Facade.
+
+## Clean Code Principles Applied
+1. **Meaningful Names:** Method names like `watchMovie()` and `endMovie()` clearly express intent without exposing internal steps.
+2. **Single Responsibility Principle (SRP):** The Facade manages coordination, while each subsystem class handles its specific device logic.
+3. **Information Hiding:** Subsystem details (e.g., set volume, dim lights, switch aspect ratio) are hidden from the client.
+4. **Law of Demeter:** The client only interacts with the Facade object rather than navigating complex multi-object execution chains.
+5. **Decoupled Architecture:** Subsystem classes remain unaware of the Facade and can still be used independently by power users if needed.
+
+## How to Run
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/Zhanbota111/Assignment4SDP.git](https://github.com/Zhanbota111/Assignment4SDP.git)

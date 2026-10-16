@@ -1,30 +1,26 @@
-import renderer.RasterRenderer;
-import renderer.Renderer;
-import renderer.VectorRenderer;
-import shape.Circle;
-import shape.Shape;
-import shape.Square;
+import facade.HomeTheaterFacade;
+import subsystem.*;
 
 public class Main {
     public static void main(String[] args) {
-        Renderer vector = new VectorRenderer();
-        Renderer raster = new RasterRenderer();
+        // Instantiate subsystem components
+        Amplifier amp = new Amplifier();
+        DvdPlayer dvd = new DvdPlayer();
+        Projector projector = new Projector();
+        Screen screen = new Screen();
+        TheaterLights lights = new TheaterLights();
+        PopcornPopper popper = new PopcornPopper();
 
-        // Создаем фигуры с разными рендерерами
-        Shape circle = new Circle(vector, 5.0f);
-        Shape square = new Square(raster, 10.0f);
+        // Instantiate Facade with subsystem components
+        HomeTheaterFacade homeTheater = new HomeTheaterFacade(
+                amp, dvd, projector, screen, lights, popper
+        );
 
-        System.out.println("--- Initial Drawing ---");
-        circle.draw();
-        square.draw();
+        // Client uses the simple facade interface
+        homeTheater.watchMovie("Interstellar");
 
-        System.out.println("\n--- Resizing Shapes ---");
-        circle.resize(2.0f);
-        circle.draw();
+        System.out.println("\n-----------------------------------\n");
 
-        System.out.println("\n--- Switching Renderer at Runtime ---");
-        // Создаем ту же фигуру, но с другим рендерером без изменения класса Circle
-        Shape rasterCircle = new Circle(raster, 10.0f);
-        rasterCircle.draw();
+        homeTheater.endMovie();
     }
 }
